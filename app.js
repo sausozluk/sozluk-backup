@@ -20,7 +20,7 @@ for (var i = 2; i < files.length; i++) {
 }
 
 var doBackup = function () {
-  console.log('[SOZLUK-BACKUP] Started with', env, 'at', time);
+  console.log('[SOZLUK-BACKUP] Started', 'at', time);
 
   backup({
     uri: config['mongo_uri'],
@@ -31,7 +31,7 @@ var doBackup = function () {
       if (err) {
         console.error('[ERR]', err.message);
       } else {
-        console.log('[SOZLUK-BACKUP] End     with', env, 'at', time);
+        console.log('[SOZLUK-BACKUP] End    ', 'at', time);
       }
     }
   });
@@ -40,4 +40,4 @@ var doBackup = function () {
 var job = new cronjob('00 00 7-23/12 * * *', doBackup, function () {
 }, true, 'Europe/Istanbul');
 
-console.log('[APP]', 'running!');
+console.log('[APP]', 'running with', env);
