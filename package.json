@@ -1,0 +1,9 @@
+{
+  "name": "sozluk-backup",
+  "version": "0.0.1",
+  "dependencies": {
+    "cron": "^1.2.1",
+    "dotenv": "^4.0.0",
+    "mongodb-backup": "^1.6.9"
+  }
+}
