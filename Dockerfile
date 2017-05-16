@@ -3,4 +3,4 @@ ENV NPM_CONFIG_LOGLEVEL warn
 COPY . /app
 WORKDIR /app
 RUN ["npm", "install"]
-RUN ["node", "app"]
+CMD ["node", "app"]
