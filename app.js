@@ -37,7 +37,7 @@ var doBackup = function () {
   });
 };
 
-var job = new cronjob('00 00 7-23/12 * * *', doBackup, function () {
+var job = new cronjob('00 00 7-23/2 * * *', doBackup, function () {
 }, true, 'Europe/Istanbul');
 
 console.log('[APP]', 'running with', env);
