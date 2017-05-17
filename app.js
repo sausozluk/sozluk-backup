@@ -4,7 +4,6 @@ var cronjob = require('cron').CronJob;
 var dotenv = require('dotenv').config();
 var env = process.env['SOZLUK_ENV'] || 'local';
 var config = require(__dirname + '/confs/' + env);
-var time = new Date();
 
 var files = fs.readdirSync(__dirname + '/backups').filter(function (file) {
   return file.indexOf('.tar') > 0;
@@ -20,6 +19,7 @@ for (var i = 2; i < files.length; i++) {
 }
 
 var doBackup = function () {
+  var time = new Date();
   console.log('[SOZLUK-BACKUP] Started', 'at', time);
 
   backup({
@@ -31,7 +31,7 @@ var doBackup = function () {
       if (err) {
         console.error('[ERR]', err.message);
       } else {
-        console.log('[SOZLUK-BACKUP] End    ', 'at', time);
+        console.log('[SOZLUK-BACKUP] End    ', 'at', new Date());
       }
     }
   });
