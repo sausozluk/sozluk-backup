@@ -1,3 +1,3 @@
 {
-  "mongo_uri": "mongodb://localhost:27017/test"
+  "mongo_uri": "mongodb://localhost:27017/sozluk"
 }
