@@ -23,6 +23,8 @@ var doClean = function () {
 };
 
 var doBackup = function () {
+  var time = new Date();
+
   backup({
     uri: config['mongo_uri'],
     root: __dirname + '/backups',
@@ -32,13 +34,13 @@ var doBackup = function () {
       if (err) {
         console.error('[ERR]', err.message);
       } else {
-        console.log('[SOZLUK-BACKUP] Done at', new Date());
+        console.log('[SOZLUK-BACKUP] Done at', time);
       }
     }
   });
 };
 
-var job = new cronjob('00 00 7-23/2 * * *', function () {
+var job = new cronjob('00 00 */2 * * *', function () {
   doClean();
   doBackup();
 }, function () {
