@@ -23,8 +23,6 @@ var doUpload = function (name, path) {
   })
 };
 
-doUpload('app.js', __dirname + '/app.js');
-
 var doClean = function () {
   var files = fs.readdirSync(__dirname + '/backups')
     .filter(function (file) {
