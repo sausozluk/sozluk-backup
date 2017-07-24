@@ -12,11 +12,14 @@ aws.config.update({
 });
 
 var doUpload = function (name, path) {
+  var data = fs.readFileSync(path);
+  var base64 = new Buffer(data, 'binary');
+
   var s3 = new aws.S3();
   s3.putObject({
     Bucket: 'sozluk',
     Key: name,
-    Body: path,
+    Body: base64,
     ACL: 'private'
   }, function () {
     console.log('[AWS-UPLOAD] Done');
