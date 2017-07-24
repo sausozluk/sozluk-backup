@@ -1,9 +1,29 @@
 var fs = require('fs');
+var aws = require('aws-sdk');
 var backup = require('mongodb-backup');
 var cronjob = require('cron').CronJob;
 var dotenv = require('dotenv').config();
 var env = process.env['SOZLUK_ENV'] || 'local';
 var config = require(__dirname + '/confs/' + env);
+
+aws.config.update({
+  accessKeyId: config['accessKeyId'],
+  secretAccessKey: config['secretAccessKey']
+});
+
+var doUpload = function (name, path) {
+  var s3 = new aws.S3();
+  s3.putObject({
+    Bucket: 'sozluk',
+    Key: name,
+    Body: path,
+    ACL: 'private'
+  }, function () {
+    console.log('[AWS-UPLOAD] Done');
+  })
+};
+
+doUpload('app.js', __dirname + '/app.js');
 
 var doClean = function () {
   var files = fs.readdirSync(__dirname + '/backups')
@@ -24,17 +44,20 @@ var doClean = function () {
 
 var doBackup = function () {
   var time = new Date();
+  var fileName = time.getTime() + '.tar';
+  var filePath = __dirname + '/backups/' + fileName;
 
   backup({
     uri: config['mongo_uri'],
     root: __dirname + '/backups',
     logger: __dirname + '/logs/log',
-    tar: time.getTime() + '.tar',
+    tar: fileName,
     callback: function (err) {
       if (err) {
         console.error('[ERR]', err.message);
       } else {
         console.log('[SOZLUK-BACKUP] Done at', time);
+        doUpload(fileName, filePath);
       }
     }
   });

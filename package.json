@@ -4,6 +4,7 @@
   "dependencies": {
     "cron": "^1.2.1",
     "dotenv": "^4.0.0",
-    "mongodb-backup": "^1.6.9"
+    "mongodb-backup": "^1.6.9",
+    "aws-sdk": "2.88.0"
   }
 }
