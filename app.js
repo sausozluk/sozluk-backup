@@ -64,7 +64,7 @@ var doBackup = function () {
   });
 };
 
-var job = new cronjob('00 00 */2 * * *', function () {
+var job = new cronjob('00 00 */6 * * *', function () {
   doClean();
   doBackup();
 }, function () {
