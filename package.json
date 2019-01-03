@@ -2,9 +2,10 @@
   "name": "sozluk-backup",
   "version": "0.0.1",
   "dependencies": {
-    "cron": "^1.2.1",
-    "dotenv": "^4.0.0",
-    "mongodb-backup": "^1.6.9",
-    "aws-sdk": "2.88.0"
+    "aws-sdk": "2.382.0",
+    "cron": "1.2.1",
+    "dotenv": "6.2.0",
+    "express": "4.16.4",
+    "mongodb-backup": "1.6.9"
   }
 }
